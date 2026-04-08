@@ -65,7 +65,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link to="/" className="flex-shrink-0">
+          <Link to="/" className="flex-shrink-0" onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setIsOpen(false); }}>
             <span className={`font-display text-lg sm:text-xl tracking-tight transition-colors duration-300 ${
               isHeroVisible ? "text-white drop-shadow-lg" : "text-foreground"
             }`}>

@@ -1,3 +1,5 @@
-# Welcome to your Lovable project
+# Rocheleau Cosmétiques
 
-TODO: Document your project here
+Site officiel de Rocheleau Cosmétiques — Produits cosmétiques naturels et de qualité.
+
+🌐 [rocheleaucosmetiques.com](https://rocheleaucosmetiques.com)

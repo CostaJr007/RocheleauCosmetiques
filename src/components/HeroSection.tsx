@@ -1,77 +1,75 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import lifestyle from "@/assets/lifestyle3.png";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section id="accueil" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background video */}
       <video
         autoPlay
         muted
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        poster=""
       >
         <source src="/videos/hero1.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/75 to-background/30 lg:to-transparent" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen py-32">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-24 sm:py-32">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
-            <div className="space-y-2">
-              <p className="text-xs font-body font-medium tracking-[0.3em] uppercase text-primary">
-                Cosmétiques Naturels • 100% Écologique
-              </p>
-            </div>
+            <p className="text-[10px] sm:text-xs font-body font-medium tracking-[0.3em] uppercase text-primary">
+              {t("hero.badge")}
+            </p>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-light leading-[0.9] tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-light leading-[0.9] tracking-tight">
               Cosmétiques
               <br />
               <span className="font-semibold text-primary">ROCHE</span>{" "}
               <span className="font-light">LEAU</span>
             </h1>
 
-            <p className="text-xl sm:text-2xl font-display italic text-foreground/70 max-w-lg">
-              Hydratation Pure. Naturelle. Éclatante.
+            <p className="text-lg sm:text-xl lg:text-2xl font-display italic text-foreground/70 max-w-lg">
+              {t("hero.tagline")}
             </p>
 
             <div className="flex items-center gap-3">
-              <span className="w-12 h-px bg-primary" />
-              <p className="text-sm font-body font-medium tracking-wider uppercase text-primary/80">
-                Coleção Exclusiva • Disponível apenas por indicação e convite
+              <span className="w-8 sm:w-12 h-px bg-primary" />
+              <p className="text-xs sm:text-sm font-body font-medium tracking-wider uppercase text-primary/80">
+                {t("hero.exclusive")}
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
               <Button
                 size="lg"
-                className="text-sm tracking-wider uppercase font-body px-10 py-6"
+                className="text-xs sm:text-sm tracking-wider uppercase font-body px-6 sm:px-10 py-5 sm:py-6"
                 onClick={() => scrollTo("exclusividade")}
               >
-                Solicitar Meu Convite
+                {t("hero.cta1")}
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="text-sm tracking-wider uppercase font-body px-10 py-6 border-foreground/20"
+                className="text-xs sm:text-sm tracking-wider uppercase font-body px-6 sm:px-10 py-5 sm:py-6 border-foreground/20"
                 onClick={() => scrollTo("apropos")}
               >
-                Conhecer a Marca
+                {t("hero.cta2")}
               </Button>
             </div>
           </motion.div>
@@ -86,7 +84,7 @@ const HeroSection = () => {
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/10 to-transparent rounded-3xl blur-2xl" />
               <img
                 src={lifestyle}
-                alt="Femme utilisant les crèmes Cosmétiques ROCHE LEAU"
+                alt="Cosmétiques ROCHE LEAU skincare"
                 className="relative rounded-2xl shadow-2xl w-full max-w-lg mx-auto object-cover aspect-[3/4]"
                 loading="eager"
               />
@@ -100,7 +98,7 @@ const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
         onClick={() => scrollTo("exclusividade")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-foreground/40 animate-bounce"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 text-foreground/40 animate-bounce"
         aria-label="Scroll down"
       >
         <ChevronDown className="w-6 h-6" />

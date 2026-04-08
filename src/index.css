@@ -102,3 +102,5 @@
 html {
   scroll-behavior: smooth;
 }
+
+#lovable-badge { display: none !important; }

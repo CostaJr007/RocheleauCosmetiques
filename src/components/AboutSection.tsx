@@ -37,10 +37,7 @@ const AboutSection = () => {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <img src={modelProducts} alt="Roche Leau skincare" className="rounded-xl sm:rounded-2xl shadow-lg w-full aspect-[3/4] object-cover" loading="lazy" />
-              <img src={modelSkincare} alt="Roche Leau products" className="rounded-xl sm:rounded-2xl shadow-lg w-full aspect-[3/4] object-cover mt-8 sm:mt-12" loading="lazy" />
-            </div>
+            <img src={modelProducts} alt="Roche Leau skincare" className="rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md mx-auto aspect-[3/4] object-cover" loading="lazy" />
             <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
           </motion.div>
         </div>

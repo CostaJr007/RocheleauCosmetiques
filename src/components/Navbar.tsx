@@ -66,13 +66,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link to="/" className="flex-shrink-0">
-            <img
-              src={isHeroVisible ? logoTransparent : logoDefault}
-              alt="Cosmétiques ROCHE LEAU"
-              className={`h-9 sm:h-10 lg:h-12 w-auto object-contain transition-all duration-300 ${
-                isHeroVisible ? "brightness-0 invert drop-shadow-lg" : ""
-              }`}
-            />
+            <span className={`font-display text-lg sm:text-xl tracking-tight transition-colors duration-300 ${
+              isHeroVisible ? "text-white drop-shadow-lg" : "text-foreground"
+            }`}>
+              <span className="font-light">Cosmétiques</span>{" "}
+              <span className="font-bold text-primary">ROCHE</span>{" "}
+              <span className="font-light">LEAU</span>
+            </span>
           </Link>
 
           <div className="hidden xl:flex items-center gap-5">

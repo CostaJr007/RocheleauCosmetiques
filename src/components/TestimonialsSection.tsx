@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import lifestyle1 from "@/assets/lifestyle1.png";
-import lifestyle2 from "@/assets/lifestyle2.png";
-import lifestyle3 from "@/assets/lifestyle3.png";
+import modelRedhead from "@/assets/model-redhead.png";
+import modelProducts from "@/assets/model-products.png";
 
 const TestimonialsSection = () => {
   const { t } = useLanguage();
@@ -12,8 +12,8 @@ const TestimonialsSection = () => {
 
   const testimonials = [
     { text: t("test.t1.text"), name: "Marie Laurent", role: t("test.t1.role"), image: lifestyle1 },
-    { text: t("test.t2.text"), name: "Sophie Dubois", role: t("test.t2.role"), image: lifestyle2 },
-    { text: t("test.t3.text"), name: "Camille Martin", role: t("test.t3.role"), image: lifestyle3 },
+    { text: t("test.t2.text"), name: "Sophie Dubois", role: t("test.t2.role"), image: modelRedhead },
+    { text: t("test.t3.text"), name: "Camille Martin", role: t("test.t3.role"), image: modelProducts },
   ];
 
   const prev = () => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1));

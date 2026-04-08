@@ -128,7 +128,7 @@ const HeroSection = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-xs sm:text-sm tracking-wider uppercase font-body px-6 sm:px-10 py-5 sm:py-6 border-white/20 text-white hover:bg-white/10"
+                className="text-xs sm:text-sm tracking-wider uppercase font-body px-6 sm:px-10 py-5 sm:py-6 border-white/40 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:border-white/60"
                 onClick={() => scrollTo("apropos")}
               >
                 {t("hero.cta2")}

@@ -1,11 +1,26 @@
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import lifestyle from "@/assets/lifestyle3.png";
+
+const videos = ["/videos/hero1.mp4", "/videos/hero2.mp4", "/videos/hero3.mp4"];
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  const [currentVideo, setCurrentVideo] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  useEffect(() => {
+    const vid = videoRefs.current[currentVideo];
+    if (!vid) return;
+    vid.currentTime = 0;
+    vid.play().catch(() => {});
+
+    const handleEnd = () => setCurrentVideo((c) => (c + 1) % videos.length);
+    vid.addEventListener("ended", handleEnd);
+    return () => vid.removeEventListener("ended", handleEnd);
+  }, [currentVideo]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -13,49 +28,96 @@ const HeroSection = () => {
 
   return (
     <section id="accueil" className="relative min-h-screen flex items-center overflow-hidden">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="/videos/hero1.mp4" type="video/mp4" />
-      </video>
+      {/* Multi-video background with crossfade */}
+      {videos.map((src, i) => (
+        <video
+          key={src}
+          ref={(el) => { videoRefs.current[i] = el; }}
+          muted
+          playsInline
+          preload={i === 0 ? "auto" : "metadata"}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            i === currentVideo ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ))}
 
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/75 to-background/30 lg:to-transparent" />
+      {/* Cinematic overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+
+      {/* Video indicator dots */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {videos.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentVideo(i)}
+            className={`w-2 h-2 rounded-full transition-all duration-500 ${
+              i === currentVideo ? "bg-primary w-6" : "bg-white/40 hover:bg-white/60"
+            }`}
+            aria-label={`Video ${i + 1}`}
+          />
+        ))}
+      </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-24 sm:py-32">
+        <div className="flex items-center min-h-screen py-24 sm:py-32">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-6 sm:space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="max-w-2xl space-y-6 sm:space-y-8"
           >
-            <p className="text-[10px] sm:text-xs font-body font-medium tracking-[0.3em] uppercase text-primary">
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-[10px] sm:text-xs font-body font-medium tracking-[0.4em] uppercase text-primary"
+            >
               {t("hero.badge")}
-            </p>
+            </motion.p>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-light leading-[0.9] tracking-tight">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-light leading-[0.9] tracking-tight text-white"
+            >
               Cosmétiques
               <br />
               <span className="font-semibold text-primary">ROCHE</span>{" "}
               <span className="font-light">LEAU</span>
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg sm:text-xl lg:text-2xl font-display italic text-foreground/70 max-w-lg">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 1 }}
+              className="text-lg sm:text-xl lg:text-2xl font-display italic text-white/70 max-w-lg"
+            >
               {t("hero.tagline")}
-            </p>
+            </motion.p>
 
-            <div className="flex items-center gap-3">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="flex items-center gap-3"
+            >
               <span className="w-8 sm:w-12 h-px bg-primary" />
               <p className="text-xs sm:text-sm font-body font-medium tracking-wider uppercase text-primary/80">
                 {t("hero.exclusive")}
               </p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4"
+            >
               <Button
                 size="lg"
                 className="text-xs sm:text-sm tracking-wider uppercase font-body px-6 sm:px-10 py-5 sm:py-6"
@@ -66,29 +128,12 @@ const HeroSection = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="text-xs sm:text-sm tracking-wider uppercase font-body px-6 sm:px-10 py-5 sm:py-6 border-foreground/20"
+                className="text-xs sm:text-sm tracking-wider uppercase font-body px-6 sm:px-10 py-5 sm:py-6 border-white/20 text-white hover:bg-white/10"
                 onClick={() => scrollTo("apropos")}
               >
                 {t("hero.cta2")}
               </Button>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            className="hidden lg:block"
-          >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-primary/10 to-transparent rounded-3xl blur-2xl" />
-              <img
-                src={lifestyle}
-                alt="Cosmétiques ROCHE LEAU skincare"
-                className="relative rounded-2xl shadow-2xl w-full max-w-lg mx-auto object-cover aspect-[3/4]"
-                loading="eager"
-              />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -98,7 +143,7 @@ const HeroSection = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
         onClick={() => scrollTo("exclusividade")}
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 text-foreground/40 animate-bounce"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 text-white/40 animate-bounce z-20"
         aria-label="Scroll down"
       >
         <ChevronDown className="w-6 h-6" />

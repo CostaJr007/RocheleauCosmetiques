@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import lifestyle from "@/assets/lifestyle1.png";
-import jars from "@/assets/jars.jpg";
+import modelProducts from "@/assets/model-products.png";
+import modelSkincare from "@/assets/model-skincare.png";
 
 const AboutSection = () => {
   const { t } = useLanguage();
@@ -38,8 +38,8 @@ const AboutSection = () => {
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative">
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <img src={lifestyle} alt="Roche Leau skincare" className="rounded-xl sm:rounded-2xl shadow-lg w-full aspect-[3/4] object-cover" loading="lazy" />
-              <img src={jars} alt="Roche Leau products" className="rounded-xl sm:rounded-2xl shadow-lg w-full aspect-[3/4] object-cover mt-8 sm:mt-12" loading="lazy" />
+              <img src={modelProducts} alt="Roche Leau skincare" className="rounded-xl sm:rounded-2xl shadow-lg w-full aspect-[3/4] object-cover" loading="lazy" />
+              <img src={modelSkincare} alt="Roche Leau products" className="rounded-xl sm:rounded-2xl shadow-lg w-full aspect-[3/4] object-cover mt-8 sm:mt-12" loading="lazy" />
             </div>
             <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
           </motion.div>

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const videos = ["/videos/hero1.mp4", "/videos/hero2.mp4", "/videos/hero3.mp4"];
+const videos = ["/videos/hero2.mp4", "/videos/hero3.mp4", "/videos/hero1.mp4"];
 
 const HeroSection = () => {
   const { t } = useLanguage();

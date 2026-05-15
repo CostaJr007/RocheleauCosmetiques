@@ -1,5 +1,22 @@
-# Rocheleau Cosmétiques
+# Rocheleau Cosmetiques
 
-Site officiel de Rocheleau Cosmétiques — Produits cosmétiques naturels et de qualité.
+Official e-commerce website for Rocheleau Cosmetiques, a natural and quality-focused cosmetics brand. Built with a modern React stack and optimized for performance.
 
-🌐 [rocheleaucosmetiques.com](https://rocheleaucosmetiques.com)
+## Tech Stack
+
+- **Frontend:** React 18, TypeScript, Vite
+- **UI:** Tailwind CSS, Shadcn/ui, Radix UI
+- **Animations:** Framer Motion
+- **Routing:** React Router DOM v6
+- **Testing:** Vitest + Playwright
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+## License
+
+MIT
